@@ -166,7 +166,10 @@ def move_snake():
         print("You hit the down edge! Game over")
         quit()
 
-    #if snake_pos == 
+    if new_pos in pos_list:
+        print("ate yourself")
+        quit()
+
 #
 #    #4. Write the conditions for UP and DOWN on your own
 #    ##### YOUR CODE HERE
@@ -182,19 +185,19 @@ def move_snake():
         food_stamps.pop(food_ind)
         print("You have eaten the food")
         make_food()
+    else:
+         old_stamp = stamp_list.pop(0)
+         snake.clearstamp(old_stamp)
+         pos_list.pop(0)
+    
     my_pos=snake.pos() 
-    pos_list.append(snake.pos)
+    pos_list.append(snake.pos())
     new_stamp = snake.stamp()
     stamp_list.append(new_stamp)
     ######## SPECIAL PLACE - Remember it for Part 5
     #pop zeroth element in pos_list to get rid of last the last 
     #piece of the tail
-    old_stamp = stamp_list.pop(0)
-    snake.clearstamp(old_stamp)
-    pos_list.pop(0)
     turtle.ontimer(move_snake,TIME_STEP)
-
-
 
 food_pos = [(100,100), (-100,100), (-100,-100), (100,-100)]
 food_stamps = []
